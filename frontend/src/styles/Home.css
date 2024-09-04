@@ -1,0 +1,12 @@
+.main-content {
+    min-height: calc(100vh - 60px - 200px); /* Adjust based on navbar and footer heights */
+    padding: 20px 15px;
+
+    background-color: blueviolet;
+  }
+  
+  .movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
