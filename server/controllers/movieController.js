@@ -64,8 +64,10 @@ exports.getFavorites = async (req, res) => {
   try {
     const {email} = req.query;
     const user = await User.findOne({email:email}).populate('favorites');
+    // console.log(user.favorites);
     res.status(200).json({ success: true, data : user.favorites });
   } catch (error) {
+    // alert("Fav is not fetched");
     res.status(400).json({ success: false, error: error.message });
   }
 };
