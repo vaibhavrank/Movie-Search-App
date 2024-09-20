@@ -20,12 +20,13 @@ const Login = () => {
     setError('');
 
     try {
+      // console.log("Login button working");
       const response = await loginUser(email, password);
-      localStorage.setItem('token', response.token);
+      // console.log(response);
+      // localStorage.setItem('token', response.email);
       localStorage.setItem('email',response.email);
-      
+      // console.log(localStorage.getItem('email'));
       setSuccess("Registration successful! Redirecting to login page...");
-      console.log(localStorage.getItem('token'));
 
       setTimeout(() => {
         history('/');

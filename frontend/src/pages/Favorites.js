@@ -10,7 +10,6 @@ import { searchMovies } from '../services/api';
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [Movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchFavorites = async () => {
       setLoading(true);

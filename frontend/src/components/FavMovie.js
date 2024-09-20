@@ -1,10 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
 import '../styles/MovieCard.css';
 import { getFavorites, removeFavorite } from '../services/Favorites';
 import image from '../assets/image.png'
 const FavMovie = ( {movie} ) => {
-  const [Deleted,setDeleted] = useState('');
   const handleRemoveFavorites = () => {
     console.log(movie.imdbID);
     const response =  removeFavorite(movie.imdbID);

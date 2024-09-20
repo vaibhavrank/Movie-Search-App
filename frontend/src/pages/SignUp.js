@@ -30,7 +30,8 @@ const SignUp = () => {
 
     try {
       const response = await registerUser(name, email, password);
-      localStorage.setItem('token', response.token);
+      // localStorage.setItem('token', response.token);
+      localStorage.setItem('email',response.email);
       setSuccess("Registration successful! Redirecting to login page...");
       setTimeout(() => {
         history('/');

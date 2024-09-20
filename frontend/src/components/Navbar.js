@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
-import { searchMovies } from '../services/api';
 
 const Navbar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');

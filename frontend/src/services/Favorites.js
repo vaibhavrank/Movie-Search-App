@@ -1,15 +1,18 @@
 // src/services/favorites.js
-// src/services/favorites.js
-const API_BASE_URL = 'http://localhost:5000/api';
+
+const API_BASE_URL = 'http://localhost:5000';
 export const addToFavorites = async (movie) => {
-  const mail = localStorage.getItem('email');
+  
+
   try {
-    console.log(localStorage.getItem('token'));
-    const response = await fetch(`${API_BASE_URL}/movies/favorites`, {
+    const mail = localStorage.getItem('email');
+    console.log(mail);
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE_URL}/api/movies/favorites`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-auth-token': localStorage.getItem('token'), // Assuming token-based authentication
+        'x-auth-token':  token, // Assuming token-based authentication
       },
       body: JSON.stringify({
         movieId: movie.imdbID, // Use the movie's imdbID to identify it
@@ -17,8 +20,8 @@ export const addToFavorites = async (movie) => {
       }),
     });
     const data = await response.json();
-     
-    if (!response) { 
+    console.log(data);
+    if (!data) { 
       alert(data.message);
       throw new Error(data.message || 'Failed t  o add movie to favorites');
     }else{
@@ -36,7 +39,7 @@ export const getFavorites = async () => {
   const token = localStorage.getItem('token');
   const email = localStorage.getItem('email');
   try {
-    const response = await fetch(`${API_BASE_URL}/movies/favorites?email=${email}`, {
+    const response = await fetch(`${API_BASE_URL}/api/movies/favorites?email=${email}`, {
       method:'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +62,7 @@ export const removeFavorite = async (movieId) => {
     const mail = localStorage.getItem('email');
     const token = localStorage.getItem('token');
 
-    const response = await fetch(`${API_BASE_URL}/movies/remove?email=${mail}&movieId=${movieId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/movies/remove?email=${mail}&movieId=${movieId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +79,6 @@ export const removeFavorite = async (movieId) => {
   
 
   } catch (error) {
-    console.log(error.message);
     alert("Movie is Not Deleted From Favorites. Please Try again!!!");
   }
 };
