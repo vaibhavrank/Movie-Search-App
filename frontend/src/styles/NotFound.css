@@ -1,0 +1,43 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  
+  .not-found h1 {
+    font-size: 100px;
+    color: #d9534f; /* Red color for the 404 */
+    margin: 0;
+  }
+  
+  .not-found h2 {
+    font-size: 24px;
+    color: #354745;
+    margin: 10px 0;
+  }
+  
+  .not-found p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .home-button {
+    padding: 10px 20px;
+    background-color: #384b4d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #2b3738;
+  }
+  

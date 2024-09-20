@@ -11,12 +11,12 @@ const Footer = () => {
         </div>
         <div className="footer-section">
           <h4>Contact</h4>
-          <p>Email: contact@movieapp.com</p>
-          <p>Phone: (123) 456-7890</p>
+          <p>Email: info@movieapp.com</p>
+          <p>Phone: +91 9687798433</p>
         </div>
         <div className="footer-section">
           <h4>Follow Us</h4>
-          <p>Facebook | Twitter | Instagram</p>
+          <p><a className=' no-underline ' href='https://www.linkedin.com/in/vaibhav-rank-366958302/'>Linked in</a> | <a href='tagram.com/____vaibhav_patel_/'>Instagram</a></p>
         </div>
       </div>
       <div className="footer-bottom">

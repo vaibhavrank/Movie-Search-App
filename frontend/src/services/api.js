@@ -1,5 +1,5 @@
 // src/services/api.js
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://movie-finder-backend-wmrr.onrender.com';
 export const getRandomMovies = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/movies/random`);
@@ -17,8 +17,7 @@ export const getRandomMovies = async () => {
 
 export const loginUser = async (email, password) => {
     try {
-      // console.log("Login user called");
-      // console.log(email,password);
+      
       const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
@@ -26,7 +25,7 @@ export const loginUser = async (email, password) => {
         },
         body: JSON.stringify({ email:email, password:password }),
       });
-      // console.log("take it  ",response);
+      console.log("take it  ",response);
       if (!response.ok) {
         throw new Error('Login failed');
       }
@@ -44,6 +43,8 @@ export const loginUser = async (email, password) => {
   
   export const registerUser = async (username, email, password) => {
     try {
+      console.log("Login user called");
+      console.log(email,password);
       const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
@@ -51,6 +52,7 @@ export const loginUser = async (email, password) => {
         },
         body: JSON.stringify({ username, email, password }),
       });
+      console.log(response);
       if (!response.ok) {
         throw new Error('Registration failed');
       }

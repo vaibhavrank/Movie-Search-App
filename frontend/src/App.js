@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp';
 import './styles/global.css';
 import MainHeader from './components/MainHeader';
 import Favorites from './pages/Favorites';
+import NotFound from './pages/notfound';
 function App() {
   return (
     
@@ -19,6 +20,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/signup" element={<SignUp/>} />
             <Route path="/favorites" element={<Favorites/>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
     // </div>
