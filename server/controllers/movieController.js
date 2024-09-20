@@ -5,14 +5,15 @@ const User = require('../models/User');
 require("dotenv").config();
 
 const OMDB_API_KEY = process.env.OMDB_API_KEY;
-const OMDB_API_URL = 'http://www.omdbapi.com/';
+const OMDB_API_URL = process.env.OMDB_API_URL;
 
 exports.getRandomMovies = async (req, res) => {
   try {
     // const {s} = "";
-    const response = await axios.get(`${OMDB_API_URL}?apikey=${OMDB_API_KEY}`);
-    // const movies = await Movie.aggregate([{ $sample: { size: 10 } }]);
-    res.status(200).json({ success: true, data: response });
+    const response = await axios.get(`${OMDB_API_URL}?apikey=${OMDB_API_KEY}&s=random`);
+    const data = await  response.json();
+
+    res.status(200).json({ success: true, data: data });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
@@ -64,7 +65,6 @@ exports.getFavorites = async (req, res) => {
   try {
     const {email} = req.query;
     const user = await User.findOne({email:email}).populate('favorites');
-    // console.log(user.favorites);
     res.status(200).json({ success: true, data : user.favorites });
   } catch (error) {
     // alert("Fav is not fetched");
