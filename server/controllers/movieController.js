@@ -10,11 +10,12 @@ const OMDB_API_URL = process.env.OMDB_API_URL;
 exports.getRandomMovies = async (req, res) => {
   try {
     // const {s} = "";
-    const response = await axios.get(`${OMDB_API_URL}?apikey=${OMDB_API_KEY}&s=random`);
-    const data = await  response.json();
-
-    res.status(200).json({ success: true, data: data });
+    const response = await axios.get(`${OMDB_API_URL}?s=movie&apikey=${OMDB_API_KEY}`);
+    
+    // console.log(response.data);
+    res.status(200).json({ success: true, data: response.data });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ success: false, error: error.message });
   }
 };
@@ -45,14 +46,18 @@ exports.addFavorite = async (req, res) => {
     const user = await User.findOne({email:email});
     let movie = await Movie.findOne({ imdbID : movieId });
     if (!movie) {
-      const movieDetails = await axios.get(`${OMDB_API_URL}?apikey=${OMDB_API_KEY}&i=${movieId}`);
+      const response = await axios.get(`${OMDB_API_URL}?apikey=${OMDB_API_KEY}&i=${movieId}`);
+      const movieDetails = response.data;
+
+
       movie = await Movie.create({
-        title: movieDetails.data.Title,
-        year: movieDetails.data.Year,
-        imdbID: movieDetails.data.imdbID,
-        poster: movieDetails.data.Poster,
-        plot: movieDetails.data.Plot
+        title: movieDetails.Title,
+        year: movieDetails.Year,
+        imdbID: movieDetails.imdbID,
+        poster: movieDetails.Poster,
+        plot: movieDetails.Plot
       });
+
     }
     await User.findByIdAndUpdate(user._id, { $addToSet: { favorites : movie._id } });
     res.status(200).json({ success: true, message: 'Movie added to favorites' });
@@ -67,7 +72,6 @@ exports.getFavorites = async (req, res) => {
     const user = await User.findOne({email:email}).populate('favorites');
     res.status(200).json({ success: true, data : user.favorites });
   } catch (error) {
-    // alert("Fav is not fetched");
     res.status(400).json({ success: false, error: error.message });
   }
 };
